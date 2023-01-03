@@ -1,4 +1,4 @@
-package practice_erolhoca;
+package practice_erolhoca.day01;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
