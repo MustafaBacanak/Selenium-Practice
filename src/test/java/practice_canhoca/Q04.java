@@ -1,4 +1,4 @@
-package canhocasorular;
+package practice_canhoca;
 
 import org.junit.Test;
 import org.openqa.selenium.By;

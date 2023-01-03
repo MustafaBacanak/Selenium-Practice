@@ -1,4 +1,4 @@
-package practice;
+package practice_erolhoca;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;

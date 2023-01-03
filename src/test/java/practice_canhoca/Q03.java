@@ -1,4 +1,4 @@
-package canhocasorular;
+package practice_canhoca;
 
 import org.junit.Assert;
 import org.junit.Test;

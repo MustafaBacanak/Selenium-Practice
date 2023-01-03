@@ -1,4 +1,4 @@
-package canhocasorular;
+package practice_canhoca;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
