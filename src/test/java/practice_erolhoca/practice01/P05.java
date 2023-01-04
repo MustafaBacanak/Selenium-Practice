@@ -18,7 +18,6 @@ public class P05 {
         driver.close();
 
     }
-
     @BeforeClass
     public static void beforeClass() throws Exception {
         WebDriverManager.chromedriver().setup();

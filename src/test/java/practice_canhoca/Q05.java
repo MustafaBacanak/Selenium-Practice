@@ -29,7 +29,7 @@ public class Q05 extends TestBase {
 
         Thread.sleep(2000);
 
-        //        clickWithText("div.card-body>h5","Alerts, Frame & Windows");
+        // clickWithText("div.card-body>h5","Alerts, Frame & Windows");
 
 
         //""Please select an item from left to start practice."" yazısının görünür olduğunu doğrula

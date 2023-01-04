@@ -57,6 +57,4 @@ public class P02 extends TestBase {
         //  apply button a basin
         driver.findElement(By.xpath("//*[text()='Apply']")).click();
     }
-
-
 }

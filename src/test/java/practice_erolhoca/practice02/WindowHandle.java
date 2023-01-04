@@ -6,7 +6,6 @@ import org.openqa.selenium.WindowType;
 import utilities.TestBase;
 
 public class WindowHandle extends TestBase {
-
     @Test
     public void test01() {
         //Amazon anasayfa adresine gidin.

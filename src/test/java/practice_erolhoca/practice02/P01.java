@@ -47,7 +47,5 @@ public class P01 extends TestBase {
         //    aseertion these message
         Assert.assertEquals("Hello TechProEducation How are you today",driver.findElement(By.xpath("//*[@id='demo1']")).getText());
 
-
     }
-
 }

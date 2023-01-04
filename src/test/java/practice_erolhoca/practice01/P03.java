@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class P03 {
-
     public static void main(String[] args) {
 
         WebDriver driver=new ChromeDriver();

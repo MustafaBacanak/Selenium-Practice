@@ -9,7 +9,6 @@ import utilities.TestBase;
 
 
 public class Dropdown extends TestBase {
-
     @Test
     public void test01() {
         //Amazon sayfasına gidelim

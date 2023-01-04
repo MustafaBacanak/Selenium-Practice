@@ -16,7 +16,6 @@ public class P06 {
 
     WebDriver driver;
     List<WebElement> resim ;
-
     @Before
     public void setUp(){
 

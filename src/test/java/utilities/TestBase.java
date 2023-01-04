@@ -56,7 +56,6 @@ public abstract class TestBase {
         }
         driver.switchTo().window(origin);
     }
-
     public static void clickWithText(String key, String text){
 
 

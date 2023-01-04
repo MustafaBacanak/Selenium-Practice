@@ -10,6 +10,7 @@ import java.util.List;
 public class P03 extends TestBase {
     @Test
     public void test01() throws InterruptedException {
+
         //1) http://demo.guru99.com/test/guru99home/ sitesine gidiniz
         driver.get("http://demo.guru99.com/test/guru99home/");
 
