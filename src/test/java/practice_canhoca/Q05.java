@@ -19,18 +19,18 @@ public class Q05 extends TestBase {
 
         //Alerts, Frame & Windows Butonuna click yap
 
-        WebElement aFW = driver.findElement(By.xpath(""));
+        WebElement aFW = driver.findElement(By.cssSelector("path[fill-rule='evenodd']"));
+        js.executeScript("arguments[0].click();",aFW);
 
-        try {
-            aFW.click();
-        }catch (NullPointerException e){
-            js.executeScript("arguments[0].click();",aFW);
-        }
+//        try {
+//            aFW.click();
+//        }catch (NullPointerException e){
+//            js.executeScript("arguments[0].click();",aFW);
+//        }
+
+//      clickWithText("div.card-body>h5","Alerts, Frame & Windows");
 
         Thread.sleep(2000);
-
-        // clickWithText("div.card-body>h5","Alerts, Frame & Windows");
-
 
         //""Please select an item from left to start practice."" yazısının görünür olduğunu doğrula
         WebElement text1 =driver.findElement(By.cssSelector("div[class='col-12 mt-4 col-md-6']"));
@@ -38,7 +38,9 @@ public class Q05 extends TestBase {
         Thread.sleep(2000);
 
         //Sol'da açılan Menu den ""Browser Windows"" butonuna click yap
-        WebElement bW = driver.findElement(By.cssSelector(".collapse.element-list.show > .menu-list > li:nth-of-type(1) > .text"));
+//        WebElement bW = driver.findElement(By.xpath("//*[text()='Browser Windows']")); // Çalışmadı o yüzden css'e gittim
+        WebElement bW = driver.findElement(By.cssSelector("div[class='element-list collapse show'] li[id='item-0'] span[class='text']"));
+
         js.executeScript("arguments[0].click();", bW);
         Thread.sleep(2000);
 
