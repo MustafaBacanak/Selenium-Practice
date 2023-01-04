@@ -1,4 +1,4 @@
-package practice_erolhoca.day02;
+package practice_erolhoca.practice02;
 
 import org.junit.Test;
 import org.openqa.selenium.By;

@@ -1,6 +1,6 @@
 package practice_canhoca;
 
-import org.junit.Assert;
+import  org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,7 +10,7 @@ import utilities.TestBase;
 import java.util.Set;
 
 public class Q05 extends TestBase {
-    JavascriptExecutor js = (JavascriptExecutor)driver;
+    JavascriptExecutor js = (JavascriptExecutor) driver;
     @Test
     public void test05() throws InterruptedException {
 
@@ -18,9 +18,19 @@ public class Q05 extends TestBase {
         driver.get("https://demoqa.com/");
 
         //Alerts, Frame & Windows Butonuna click yap
-        WebElement aFW = driver.findElement(By.xpath("(//*[@class='card-body'])[3]"));
-        js.executeScript("arguments[0].click();", aFW);
+
+        WebElement aFW = driver.findElement(By.xpath(""));
+
+        try {
+            aFW.click();
+        }catch (NullPointerException e){
+            js.executeScript("arguments[0].click();",aFW);
+        }
+
         Thread.sleep(2000);
+
+        //        clickWithText("div.card-body>h5","Alerts, Frame & Windows");
+
 
         //""Please select an item from left to start practice."" yazısının görünür olduğunu doğrula
         WebElement text1 =driver.findElement(By.cssSelector("div[class='col-12 mt-4 col-md-6']"));

@@ -3,10 +3,15 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public abstract class TestBase {
 
@@ -26,7 +31,7 @@ public abstract class TestBase {
     @After
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
-        driver.quit();
+//        driver.quit();
     }
 
     //    MULTIPLE WINDOW
@@ -50,5 +55,23 @@ public abstract class TestBase {
             }
         }
         driver.switchTo().window(origin);
+    }
+
+    public static void clickWithText(String key, String text){
+
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        List<WebElement> element = wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector(key))));
+
+        for (int i = 0; i < element.size(); i++) {
+            if (element.get(i).getText().equals(text)){
+                element.get(i).click();
+            }
+        }
+//        for (WebElement w : options){
+//            if (w.getText().equals(text)){
+//                w.click();
+//            }
+//        }
     }
 }

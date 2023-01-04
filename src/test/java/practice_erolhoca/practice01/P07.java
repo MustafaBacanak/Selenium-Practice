@@ -1,4 +1,4 @@
-package practice_erolhoca.day01;
+package practice_erolhoca.practice01;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.junit.Before;
