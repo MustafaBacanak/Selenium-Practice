@@ -68,24 +68,21 @@ public abstract class TestBase {
     public static WebElement findId(String key){
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(key)));
-        return element;
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(key)));
     }
 
     //    Find and wait Css
     public static WebElement findCss(String key){
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(key)));
-        return element;
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(key)));
     }
 
     //    Find and wait xPath
     public static WebElement findXPath(String key){
 
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(key)));
-        return element;
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(key)));
     }
 
     //Js Executer Css
@@ -102,7 +99,7 @@ public abstract class TestBase {
         js.executeScript("arguments[0].click();",elementName);
     }
 
-   //    HARD WAIT: @param : second
+    //    HARD WAIT: @param : second
     public static void waitFor(int seconds){
         try {
             Thread.sleep(seconds*1000);
@@ -117,14 +114,14 @@ public abstract class TestBase {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         List<WebElement> element = wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector(key))));
 
-        for (int i = 0; i < element.size(); i++) {
-            if (element.get(i).getText().equals(text)){
-                element.get(i).click();
+        for (WebElement webElement : element) {
+            if (webElement.getText().equals(text)) {
+                webElement.click();
             }
         }
-//        for (WebElement w : options){
-//            if (w.getText().equals(text)){
-//                w.click();
+//        for (int i = 0; i < element.size(); i++) {
+//            if (element.get(i).getText().equals(text)){
+//                element.get(i).click();
 //            }
 //        }
     }
