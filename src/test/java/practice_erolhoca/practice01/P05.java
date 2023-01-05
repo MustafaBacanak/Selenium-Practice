@@ -59,5 +59,6 @@ public class P05 {
     public void test03() {
         //arama kutusuna  "Kill Bill" yazip, cikan sonuc sayisini yazdirin
         driver.findElement(By.cssSelector("input[title='Ara']")).sendKeys("Kill Bill", Keys.ENTER);
+
     }
 }

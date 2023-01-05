@@ -25,7 +25,6 @@ public class Q05 extends TestBase {
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3000);
         aFW.click();
-
         Thread.sleep(2000);
 
         //""Please select an item from left to start practice."" yazısının görünür olduğunu doğrula

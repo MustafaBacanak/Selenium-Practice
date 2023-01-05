@@ -39,7 +39,6 @@ public class P02 extends TestBase {
         //    w.click();
         //}
 
-
         // parent iframe e geri donun
         driver.switchTo().defaultContent();
         //driver.navigate().refresh();

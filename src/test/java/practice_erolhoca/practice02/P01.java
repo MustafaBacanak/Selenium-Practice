@@ -40,7 +40,6 @@ public class P01 extends TestBase {
         Thread.sleep(2000);
         driver.switchTo().alert().accept();
 
-
         //    finally print on console this message "Hello TechProEducation How are you today"
         System.out.println(driver.findElement(By.xpath("//*[@id='demo1']")).getText());
 

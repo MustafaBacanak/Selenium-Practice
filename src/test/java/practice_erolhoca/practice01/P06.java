@@ -55,9 +55,5 @@ public class P06 {
             System.out.println(i+1+" .başlık : " + driver.getTitle());
             Thread.sleep(500);
         }
-
-//        - Her sayfanın sayfa başlığını yazdıralım
-//        - sayfayı kapatalım
-
     }
 }

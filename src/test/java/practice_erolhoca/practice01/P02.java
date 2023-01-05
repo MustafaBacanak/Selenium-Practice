@@ -35,5 +35,6 @@ public class P02 {
         //choose your continent -> Antartica
         //choose your command  -> Browser Commands
         //click submit button
+
     }
 }

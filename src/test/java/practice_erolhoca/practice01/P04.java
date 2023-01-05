@@ -43,5 +43,6 @@ public class P04 {
 
         // Sayfayı kapatınız
         driver.close();
+
     }
 }

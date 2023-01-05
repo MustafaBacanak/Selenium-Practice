@@ -18,7 +18,6 @@ public class P07 {
        sonuc sayisinin 10 milyon’dan fazla oldugunu test edin
        Sayfayi kapatin
      */
-
     WebDriver driver;
     @Before
     public void setUp() throws Exception {

@@ -27,8 +27,7 @@ public class P03 extends TestBase {
         //4) ilk iframe'den çıkıp ana sayfaya dönünüz
         driver.navigate().refresh();
 
-        //5) ikinci iframe'deki (Jmeter Made Easy) linke (https://www.guru99.com/live-selenium-project.html)
-        //tıklayınız
+        //5) ikinci iframe'deki (Jmeter Made Easy) linke (https://www.guru99.com/live-selenium-project.html) tıklayınız
         WebElement iframe2 = driver.findElement(By.xpath("//*[@id='a077aa5e']"));
         driver.switchTo().frame(iframe2);
         driver.findElement(By.xpath("//*[@src='Jmeter720.png']")).click();

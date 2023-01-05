@@ -69,5 +69,6 @@ public class P05 extends TestBase {
         driver.close();
         driver.switchTo().window(windowHandles2.get(2));
         System.out.println(driver.getCurrentUrl());
+
     }
 }

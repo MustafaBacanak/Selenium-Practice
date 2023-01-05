@@ -21,7 +21,6 @@ public class Dropdown extends TestBase {
             System.out.println(w.getText());
         }
 
-
         //Dropdown menuden baby secelim
         //arama bölümünden milk aratalım
         driver.findElement(By.xpath("//*[@id='searchDropdownBox']")).sendKeys("Baby"

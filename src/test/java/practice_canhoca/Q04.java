@@ -16,6 +16,5 @@ public class Q04 extends TestBase {
         List<WebElement> list1 = driver.findElements(By.tagName("iFrame"));
         int a = list1.size();
         System.out.println(a);
-
     }
 }

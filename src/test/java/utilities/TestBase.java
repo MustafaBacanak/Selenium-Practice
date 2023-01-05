@@ -119,10 +119,12 @@ public abstract class TestBase {
                 webElement.click();
             }
         }
+
 //        for (int i = 0; i < element.size(); i++) {
 //            if (element.get(i).getText().equals(text)){
 //                element.get(i).click();
 //            }
 //        }
+
     }
 }

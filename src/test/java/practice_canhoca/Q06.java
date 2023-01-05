@@ -58,5 +58,6 @@ public class Q06 extends TestBase {
 
         ////New Tab butonunun görünür olduğunu doğrula
         Assert.assertTrue(newTab.isDisplayed());
+
     }
 }
