@@ -17,7 +17,5 @@ public class Q04 extends TestBase {
         int a = list1.size();
         System.out.println(a);
 
-
-
     }
 }

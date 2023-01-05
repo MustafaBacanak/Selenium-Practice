@@ -1,6 +1,5 @@
 package practice_canhoca;
-
-import  org.junit.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,11 +7,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
-
 import java.util.Set;
+public class Q06 extends TestBase {
 
-public class Q05 extends TestBase {
     JavascriptExecutor js = (JavascriptExecutor) driver;
+
     @Test
     public void test05() throws InterruptedException {
 
@@ -27,10 +26,11 @@ public class Q05 extends TestBase {
         Thread.sleep(3000);
         aFW.click();
 
+        //clickWithText("div.card-body>h5","Alerts, Frame & Windows");
         Thread.sleep(2000);
 
         //""Please select an item from left to start practice."" yazısının görünür olduğunu doğrula
-        WebElement text1 =driver.findElement(By.cssSelector("div[class='col-12 mt-4 col-md-6']"));
+        WebElement text1 = driver.findElement(By.cssSelector("div[class='col-12 mt-4 col-md-6']"));
         Assert.assertTrue(text1.isDisplayed());
         Thread.sleep(2000);
 
@@ -51,10 +51,9 @@ public class Q05 extends TestBase {
 
         //Açılan yeni Tab da ""This is a sample page"" yazısının görünür olduğunu doğrula
         String ilkSfHandle = driver.getWindowHandle();
-
-        Set<String> allWindow= driver.getWindowHandles();
-        for (String w : allWindow){
-            if(!w.equals(ilkSfHandle)){
+        Set<String> allWindow = driver.getWindowHandles();
+        for (String w : allWindow) {
+            if (!w.equals(ilkSfHandle)) {
                 driver.switchTo().window(w);
             }
         }
@@ -66,6 +65,5 @@ public class Q05 extends TestBase {
 
         ////New Tab butonunun görünür olduğunu doğrula
         Assert.assertTrue(newTab.isDisplayed());
-
     }
 }

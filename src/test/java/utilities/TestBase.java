@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,12 @@ import java.time.Duration;
 import java.util.List;
 
 public abstract class TestBase {
+
+    //Js Executer
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+
+    //WebElement elementName = driver.findElement(By.xpath("(//h5)[3]"));
+    //js.executeScript("arguments[0].click();",elementName);
 
     //  driver objesini olustur.
     protected static WebDriver driver;

@@ -32,6 +32,7 @@ public class P05 extends TestBase {
         List<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
         System.out.println("Açılan pencerelerin handle değerleri : "+windowHandles);
         driver.switchTo().window(windowHandles.get(1));
+
         /*
         Set<String> windowHandleseti= driver.getWindowHandles();
         System.out.println(windowHandleseti);
