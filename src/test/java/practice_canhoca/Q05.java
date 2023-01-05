@@ -12,7 +12,6 @@ import utilities.TestBase;
 import java.util.Set;
 
 public class Q05 extends TestBase {
-    JavascriptExecutor js = (JavascriptExecutor) driver;
     @Test
     public void test05() throws InterruptedException {
 

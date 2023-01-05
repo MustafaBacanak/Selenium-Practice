@@ -12,15 +12,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TestBase {
-
-    //Js Executer
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-
-    //WebElement elementName = driver.findElement(By.xpath("(//h5)[3]"));
-    //js.executeScript("arguments[0].click();",elementName);
 
     //  driver objesini olustur.
     protected static WebDriver driver;
@@ -38,10 +33,10 @@ public abstract class TestBase {
     @After
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
-//        driver.quit();
+        driver.quit();
     }
 
-    //    MULTIPLE WINDOW
+    //    MULTIPLE WINDOW TITLE
     public static void switchToWindow(String targetTitle) {
         String origin = driver.getWindowHandle();
         for (String handle : driver.getWindowHandles()) {
@@ -52,7 +47,7 @@ public abstract class TestBase {
         }
         driver.switchTo().window(origin);
     }
-
+    //    MULTIPLE WINDOW URL
     public static void switchToWindowUrl(String targetUrl) {
         String origin = driver.getWindowHandle();
         for (String handle : driver.getWindowHandles()) {
@@ -63,6 +58,59 @@ public abstract class TestBase {
         }
         driver.switchTo().window(origin);
     }
+
+    //    MULTIPLE WINDOW INDEX
+    public static void switchToWindow(int windowNumber){
+        List<String> list = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(list.get(windowNumber));
+    }
+    //    Find and wait ID
+    public static WebElement findId(String key){
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(key)));
+        return element;
+    }
+
+    //    Find and wait Css
+    public static WebElement findCss(String key){
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(key)));
+        return element;
+    }
+
+    //    Find and wait xPath
+    public static WebElement findXPath(String key){
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(key)));
+        return element;
+    }
+
+    //Js Executer Css
+    public static void jsExecuterCss(String key){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement elementName = driver.findElement(By.cssSelector(key));
+        js.executeScript("arguments[0].click();",elementName);
+    }
+
+    //Js Executer xPath
+    public static void jsExecuterXPath(String key){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement elementName = driver.findElement(By.xpath(key));
+        js.executeScript("arguments[0].click();",elementName);
+    }
+
+   //    HARD WAIT: @param : second
+    public static void waitFor(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void clickWithText(String key, String text){
 
 
