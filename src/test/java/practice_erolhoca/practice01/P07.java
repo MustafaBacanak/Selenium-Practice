@@ -30,6 +30,7 @@ public class P07 {
     public void test01() {
         //https://www.google.com/ adresine gidin
         driver.get("https://google.com");
+
         //cookies uyarisini kabul ederek kapatin
         //Sayfa basliginin “Google” ifadesi icerdigini test edin
         String actualTitle = driver.getTitle();

@@ -3,12 +3,12 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -33,7 +33,7 @@ public abstract class TestBase {
     @After
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
-        driver.quit();
+//        driver.quit();
     }
 
     //    MULTIPLE WINDOW TITLE
@@ -67,35 +67,37 @@ public abstract class TestBase {
     //    Find and wait ID
     public static WebElement findId(String key){
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(key)));
     }
 
     //    Find and wait Css
     public static WebElement findCss(String key){
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(key)));
     }
 
     //    Find and wait xPath
     public static WebElement findXPath(String key){
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(key)));
     }
 
     //Js Executer Css
     public static void jsExecuterCss(String key){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement elementName = driver.findElement(By.cssSelector(key));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement elementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(key)));
         js.executeScript("arguments[0].click();",elementName);
     }
 
     //Js Executer xPath
     public static void jsExecuterXPath(String key){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement elementName = driver.findElement(By.xpath(key));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement elementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(key)));
         js.executeScript("arguments[0].click();",elementName);
     }
 
@@ -107,24 +109,120 @@ public abstract class TestBase {
             e.printStackTrace();
         }
     }
+    //    ACTIONS_RIGHT CLICK
+    public static void rightClickOnElementActions(WebElement element) {
+        new Actions(driver).contextClick(element).perform();
+    }
+    //    ACTIONS_DOUBLE CLICK
+    public static void doubleClick(WebElement element) {
+        new Actions(driver).doubleClick(element).build().perform();
+    }
+    //    ACTIONS_HOVER_OVER
+    public static void hoverOverOnElementActions(WebElement element) {
+        new Actions(driver).moveToElement(element).perform();
+    }
+    //    ACTIONS_SCROLL_DOWN
+    public static void scrollDownActions() {
+        new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
+    }
+    //    ACTIONS_SCROLL_UP
+    public static void scrollUpActions() {
+        new Actions(driver).sendKeys(Keys.PAGE_UP).perform();
+    }
+    //    ACTIONS_SCROLL_RIGHT
+    public static void scrollRightActions(){
+        new Actions(driver).sendKeys(Keys.ARROW_RIGHT).sendKeys(Keys.ARROW_RIGHT).perform();
+    }
+    //    ACTIONS_SCROLL_LEFT
+    public static void scrollLeftActions(){
+        new Actions(driver).sendKeys(Keys.ARROW_LEFT).sendKeys(Keys.ARROW_LEFT).perform();
+    }
+    //    ACTIONS_DRAG_AND_DROP
+    public static void dragAndDropActions(WebElement source, WebElement target) {
+        new Actions(driver).dragAndDrop(source,target).perform();
+    }
+    //    ACTIONS_DRAG_AND_DROP_BY
+    public static void dragAndDropActions(WebElement source, int x, int y) {
+        new Actions(driver).dragAndDropBy(source, x, y).perform();
+    }
 
-    public static void clickWithText(String key, String text){
-
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        List<WebElement> element = wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector(key))));
-
-        for (WebElement webElement : element) {
-            if (webElement.getText().equals(text)) {
-                webElement.click();
+    //    DYNAMIC SELENIUM WAITS:
+//===============Explicit Wait==============//
+    public static WebElement waitForVisibility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    public static WebElement waitForVisibility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static WebElement waitForClickablility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public static WebElement waitForClickablility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    public static void clickWithTimeOut(WebElement element, int timeout) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.click();
+                return;
+            } catch (WebDriverException e) {
+                waitFor(1);
             }
         }
-
-//        for (int i = 0; i < element.size(); i++) {
-//            if (element.get(i).getText().equals(text)){
-//                element.get(i).click();
-//            }
-//        }
-
     }
+    //    This can be used when a new page opens
+    public static void waitForPageToLoad(long timeout) {
+        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        try {
+            System.out.println("Waiting for page to load...");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            wait.until(expectation);
+        } catch (Throwable error) {
+            System.out.println(
+                    "Timeout waiting for Page Load Request to complete after " + timeout + " seconds");
+        }
+    }
+    //======Fluent Wait====
+    // params : xpath of teh element , max timeout in seconds, polling in second
+    public static WebElement fluentWait(String xpath, int withTimeout, int pollingEvery) {
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(withTimeout))//Wait 3 second each time
+                .pollingEvery(Duration.ofSeconds(pollingEvery))//Check for the element every 1 second
+                .withMessage("Ignoring No Such Element Exception")
+                .ignoring(NoSuchElementException.class);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+        return element;
+    }
+
+    //==========Return a list of string given a list of Web Element====////
+    public static List<String> getElementsText(List<WebElement> list) {
+        List<String> elementText = new ArrayList<>();
+        for (WebElement w : list) {
+            if (!w.getText().isEmpty()) {
+                elementText.add(w.getText());
+            }
+        }
+        return elementText;
+    }
+
+    //========Returns the Text of the element given an element locator==//
+    public static List<String> getElementsText(By locator) {
+        List<WebElement> elements = driver.findElements(locator);
+        List<String> elementText = new ArrayList<>();
+        for (WebElement el : elements) {
+            if (!el.getText().isEmpty()) {
+                elementText.add(el.getText());
+            }
+        }
+        return elementText;
+    }
+
 }
