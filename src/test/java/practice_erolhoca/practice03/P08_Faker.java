@@ -1,4 +1,5 @@
-package practice03;
+package practice_erolhoca.practice03;
+
 import com.github.javafaker.Faker;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -17,12 +18,14 @@ public class P08_Faker extends TestBase {
         Faker class'ını kullanabilmemiz için mvn repository adresinden java faker kütüphanesini
     projemize eklememiz gerekmektedir.
      */
+
     //"https://demoqa.com/automation-practice-form"  Adresine gidin
     // Formu doldurunuz
     // Sayfayi kapatin
 
     @Test
-    public void name() {
+    public void gıcıkSoru()  {
+
         //"https://demoqa.com/automation-practice-form"  Adresine gidin
         driver.get("https://demoqa.com/automation-practice-form");
 
@@ -31,9 +34,28 @@ public class P08_Faker extends TestBase {
         WebElement firstName = driver.findElement(By.id("firstName"));
         firstName.sendKeys(faker.name().firstName(), Keys.TAB,faker.name().lastName(),Keys.TAB,
                 faker.internet().emailAddress(),Keys.TAB,Keys.SPACE,Keys.TAB,faker.phoneNumber().cellPhone(),Keys.TAB
-                ,"20 Jul 1980",Keys.ENTER,Keys.TAB,"aslkjdfalksd");
+                ,"20 Jul 1980",Keys.ENTER,Keys.TAB,faker.shakespeare().romeoAndJulietQuote(),Keys.TAB,Keys.SPACE);
 
-        // Sayfayi kapatin
-        driver.close();
+        WebElement gıcıkButon= driver.findElement(By.id("subjectsInput"));
+        gıcıkButon.sendKeys("Maths");
+        gıcıkButon.sendKeys(Keys.ENTER,Keys.TAB,Keys.TAB,Keys.SPACE);
+
+        WebElement dosyaSec = driver.findElement(By.xpath("//*[@id='uploadPicture']"));
+
+        String anaYol = System.getProperty("user.home");
+        String ortakYol = "\\OneDrive\\Masaüstü\\logo.jpeg";
+        String dosyaYolu = anaYol+ortakYol;
+        dosyaSec.sendKeys(dosyaYolu);
+        WebElement adress = driver.findElement(By.xpath("//*[@id='currentAddress']"));
+        adress.sendKeys(faker.address().fullAddress());
+
+        WebElement stateAndBtn = driver.findElement(By.id("react-select-3-input"));
+        stateAndBtn.sendKeys("Haryana");
+        stateAndBtn.sendKeys(Keys.ENTER);
+
+        WebElement selectCityBtn = driver.findElement(By.id("react-select-4-input"));
+        selectCityBtn.sendKeys("Panipat");
+        selectCityBtn.sendKeys(Keys.ENTER);
+
     }
 }
