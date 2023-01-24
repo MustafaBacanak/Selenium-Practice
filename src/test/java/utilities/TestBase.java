@@ -1,5 +1,8 @@
 package utilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
@@ -11,8 +14,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class TestBase {
@@ -20,20 +25,42 @@ public abstract class TestBase {
     //  driver objesini olustur.
     protected static WebDriver driver;
 
-    //  setUp
+    /*
+           1- <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports --> pom.xml'e yüklemek
+           2- Eğer extentReport almak istersek ilk yapmamız gereken ExtentReport class'ından bir obje oluşturmak
+           3- HTLM formatında düzenleneceği için ExtentHtmlReporter class'ından obje oluşturmak
+    */
+
+    //setUP
+    protected ExtentReports extentReports; //raporlamayi baslatiriz
+    protected ExtentHtmlReporter extentHtmlReporter ;//raporumu HTLM formatinda duzenler
+    protected ExtentTest extentTest;//test asamalarina extentTest objesiyle bilgi ekleriz
     @Before
-    public void setUp() {
+    public void setup() {
+        //1. Tarayıcıyı başlatın
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-    }
 
-    //  tearDown
+        extentReports = new ExtentReports();
+        String tarih = new SimpleDateFormat("hh_mm_ss_ddMMyyyy").format(new Date());
+        String dosyaYolu = "target/ExtentReports/htmlreport"+tarih+".html";
+        extentHtmlReporter = new ExtentHtmlReporter(dosyaYolu);
+        extentReports.attachReporter(extentHtmlReporter);
+        //Raporda gozukmesini istedigimiz bilgiler icin
+        extentReports.setSystemInfo("Browser","Chorame");
+        extentReports.setSystemInfo("Tester","Hava");
+        extentHtmlReporter.config().setDocumentTitle("Extent Report");
+        extentHtmlReporter.config().setReportName("Test Sonucu");
+        extentTest = extentReports.createTest("ExtentTest","Test Raporu");
+    }
+    //tearDown
     @After
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
+    public void tearDown()  {
+        waitFor(5);
 //        driver.quit();
+        extentReports.flush();//yukaridaki methoda bagimli bir asama
     }
 
     //    MULTIPLE WINDOW TITLE
